@@ -35,7 +35,7 @@ merged %>% filter(IBU == maxIBU) %>% select(State)
 merged %>% select(ABV) %>% summary()
 #Question 7
 library(ggplot2)
-ggplot(merged, aes(x=ABV, y=IBU)) + geom_point() + labs(title='Alcohol Content vs Bitterness') +
+ggplot(merged, aes(x=ABV, y=IBU)) + geom_point(colour = "blue", size = 0.8, na.rm = TRUE) + labs(title='Alcohol Content vs Bitterness') +
   theme(plot.title = element_text(hjust = 0.5))
 
 
