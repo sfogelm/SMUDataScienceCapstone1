@@ -1,6 +1,6 @@
 ---
 title: "Capstone 1"
-author: "Spencer Fogelman"
+author: "Spencer Fogelman, Ryan Goodwin and Queena Wang"
 date: "2/17/2019"
 output: html_document
 ---
