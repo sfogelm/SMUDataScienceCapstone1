@@ -2,14 +2,22 @@
 title: "Capstone 1"
 author: "Spencer Fogelman, Ryan Goodwin and Queena Wang"
 date: "2/17/2019"
-output: html_document
+output: 
+  html_document:
+    #Part f of page 2 says to keep the md file
+    keep_md: TRUE
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Question 1
+#Introduction
+As an Oregon based brewery we understand your desire to expand across the nation away from your corner in the United States. We also understand you would like to know more about other state's breweries to see which direction you should go with your beers. We have analyzed the data you have presented us with and made a few observations to help your cause when making this expansion.
+
+
+##Question 1
+First we checked how many breweries are present in each state. Targeting states with fewer breweries should help you target where you can inflitrate and make your presence known.
 
 ```{r}
 breweries = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Breweries.csv', stringsAsFactors = FALSE)
@@ -21,7 +29,8 @@ head(beers)
 breweries %>% group_by(State) %>% summarise(Total = n()) 
 ```
 
-Question 2
+##Question 2
+Next we merged the Beer dataset you presented to us with the breweries dataset. This will help us in our analysis moving forward.
 
 ```{r}
 merged = merge(x = breweries, y = beers, by.x = 'Brew_ID', by.y= 'Brewery_id', all = TRUE)
@@ -29,7 +38,9 @@ head(merged, 6)
 tail(merged, 6)
 ```
 
-Question 3
+##Question 3
+To understand how complete the merged dataset is we checked how many NA values are in each column.
+
 
 ```{r}
 for (i in 1:length(names(merged))){
@@ -40,7 +51,8 @@ for (i in 1:length(names(merged))){
 ```
 
 
-Question 4
+##Question 4
+We then computed the median alcohol content and IBU for each state, this should help you get an idea of how strong and how bitter people in different states prefer their beer.
 
 ```{r}
 merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.rm=TRUE),
@@ -48,7 +60,8 @@ merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.r
 
 ```
 
-Question 5
+##Question 5
+As you can see, Oregon has the most bitter beer and Colorado has the strongest beer. West Coast beers tend to be more bitter than East Coast beers, which is an idea to keep in mind moving forward.
 
 ```{r}
 maxABV = max(merged$ABV, na.rm=TRUE)
@@ -60,14 +73,17 @@ merged %>% filter(ABV == maxABV) %>% select(State)
 merged %>% filter(IBU == maxIBU) %>% select(State)
 ```
 
-Question 6
+##Question 6
+The nationwide summary statistics can give you a look into beer strengths. It is probably best to stay away from exceeding the maximum strength.
 
 ```{r}
 merged %>% select(ABV) %>% summary()
 ```
 
 
-Question 7
+##Question 7
+Finally we present you with a scatter plot between bitterness and alcoholic content of beer. There doesn't seem to be a trend, so I wouldn't worry too much about this relationship.
+
 
 ```{r}
 library(ggplot2)
@@ -76,3 +92,5 @@ ggplot(merged, aes(x=ABV, y=IBU)) + geom_point(colour = "blue", size = 0.8, na.r
 
 ```
 
+#Conclusion
+This is our analysis of your data. If you see something that strikes you as you continue your expansion we will look further into it.
