@@ -14,6 +14,7 @@ Question 1
 ```{r}
 breweries = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Breweries.csv', stringsAsFactors = FALSE)
 beers = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Beers.csv', stringsAsFactors = FALSE)
+
 library(dplyr)
 head(breweries)
 head(beers)
@@ -70,7 +71,7 @@ Question 7
 
 ```{r}
 library(ggplot2)
-ggplot(merged, aes(x=ABV, y=IBU)) + geom_point() + labs(title='Alcohol Content vs Bitterness') +
+ggplot(merged, aes(x=ABV, y=IBU)) + geom_point(colour = "blue", size = 0.8, na.rm = TRUE) + labs(title='Alcohol Content vs Bitterness') +
   theme(plot.title = element_text(hjust = 0.5))
 
 ```
