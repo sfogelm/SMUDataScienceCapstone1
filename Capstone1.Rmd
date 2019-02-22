@@ -82,7 +82,7 @@ merged %>% select(ABV) %>% summary()
 
 
 ##Question 7
-Finally we present you with a scatter plot between bitterness and alcoholic content of beer. There doesn't seem to be a trend, so I wouldn't worry too much about this relationship.
+Finally we present you with a scatter plot between bitterness and alcoholic content of beer. There is definitely a postive trend in the relationship, so it may be worth investigating if increasing the alcohol content results in more bitter beer. Since this is an observational study, we must do an experiment to confidently say there is a causal relationship.
 
 
 ```{r}
