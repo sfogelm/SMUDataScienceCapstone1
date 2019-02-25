@@ -1,5 +1,5 @@
 # Capstone Project: US Craft Beer and Breweries Study
-## **Introduction"
+## **Introduction**
 ### Purpose:The purpose of this repository is to store all the files for Case Study 1 for Group 0
 ### Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
 ### Date: Feb 2019
