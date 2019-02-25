@@ -20,14 +20,17 @@ As an Oregon based brewery we understand your desire to expand across the nation
 First we checked how many breweries are present in each state. Targeting states with fewer breweries should help you target where you can inflitrate and make your presence known.
 
 ```{r}
-breweries = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Breweries.csv', stringsAsFactors = FALSE)
-beers = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Beers.csv', stringsAsFactors = FALSE)
-
+library(ggplot2)
 library(dplyr)
+breweries = read.csv('/Users/spencerfogelman/Desktop/SMUDataScience/CapstoneProject/Breweries.csv', stringsAsFactors = FALSE)
+beers = read.csv('/Users/spencerfogelman/Desktop/SMUDataScience/CapstoneProject/Beers.csv', stringsAsFactors = FALSE)
+
 head(breweries)
 head(beers)
-breweries %>% group_by(State) %>% summarise(Total = n()) 
+breweries %>% group_by(State) %>% summarise(Total = n()) %>% arrange(Total)
 ```
+
+Here we can see that DC, North Dakota, South Dakota, and West Virginia only have one brewery.
 
 ##Question 2
 Next we merged the Beer dataset you presented to us with the breweries dataset. This will help us in our analysis moving forward.
@@ -55,10 +58,41 @@ for (i in 1:length(names(merged))){
 We then computed the median alcohol content and IBU for each state, this should help you get an idea of how strong and how bitter people in different states prefer their beer.
 
 ```{r}
-merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.rm=TRUE),
+summarydf = merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.rm=TRUE),
                                          MedianIBU = median(IBU, na.rm=TRUE))
 
+summarydf
+
+library(reshape2)
+summarydfLong = melt(summarydf, id.vars='State')
+ggplot(summarydfLong, aes(x=State, y=value, fill=variable)) + 
+  geom_bar(stat='identity', position = 'dodge') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4), legend.text=element_text(size=7)) +
+  labs(title='Median Alcohol Content and Median IBU by State', x = 'State', y='Statistic') +
+  scale_fill_discrete(name = 'Statistic', breaks= c('MedianAlcoholContent', 'MedianIBU'),
+                      labels=c('Median Alcohol Content', 'Median IBU'))
+
+
 ```
+
+Because the units are very different, we decided it would be better to do two separate bar plots.
+
+```{r}
+library(ggplot2)
+ggplot(summarydf, aes(x=reorder(State, -MedianAlcoholContent), y=MedianAlcoholContent)) + 
+  geom_bar(stat='identity', fill='blue') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4),
+        plot.title = element_text(hjust = 0.5)) +
+  labs(title='Median Alcohol Content by State', x='State', y='Median')
+
+ggplot(summarydf, aes(x=reorder(State, -MedianIBU), y=MedianIBU)) + 
+  geom_bar(stat='identity', fill='blue') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4),
+        plot.title = element_text(hjust = 0.5)) +
+  labs(title='Median IBU by State', x='State', y='Median')
+```
+
+Here we can see the DC has the largest median alcohol content and Utah has the smallest median alcohol content. Maine has the largest median IBU and Wisconsin has the lowest median IBU. For some reason we do not have information on the IBU of South Dakota.
 
 ##Question 5
 As you can see, Oregon has the most bitter beer and Colorado has the strongest beer. West Coast beers tend to be more bitter than East Coast beers, which is an idea to keep in mind moving forward.
@@ -86,7 +120,6 @@ Finally we present you with a scatter plot between bitterness and alcoholic cont
 
 
 ```{r}
-library(ggplot2)
 ggplot(merged, aes(x=ABV, y=IBU)) + geom_point(colour = "blue", size = 0.8, na.rm = TRUE) + labs(title='Alcohol Content vs Bitterness') +
   theme(plot.title = element_text(hjust = 0.5))
 

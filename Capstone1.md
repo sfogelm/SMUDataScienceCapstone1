@@ -19,9 +19,14 @@ First we checked how many breweries are present in each state. Targeting states 
 
 
 ```r
-breweries = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Breweries.csv', stringsAsFactors = FALSE)
-beers = read.csv('/Users/spencerfogelman/Downloads/CaseStudy1_2_2/Beers.csv', stringsAsFactors = FALSE)
+library(ggplot2)
+```
 
+```
+## Warning: package 'ggplot2' was built under R version 3.4.4
+```
+
+```r
 library(dplyr)
 ```
 
@@ -47,6 +52,9 @@ library(dplyr)
 ```
 
 ```r
+breweries = read.csv('/Users/spencerfogelman/Desktop/SMUDataScience/CapstoneProject/Breweries.csv', stringsAsFactors = FALSE)
+beers = read.csv('/Users/spencerfogelman/Desktop/SMUDataScience/CapstoneProject/Beers.csv', stringsAsFactors = FALSE)
+
 head(breweries)
 ```
 
@@ -82,25 +90,31 @@ head(beers)
 ```
 
 ```r
-breweries %>% group_by(State) %>% summarise(Total = n()) 
+breweries %>% group_by(State) %>% summarise(Total = n()) %>% arrange(Total)
+```
+
+```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
 ```
 
 ```
 ## # A tibble: 51 x 2
 ##    State Total
 ##    <chr> <int>
-##  1 " AK"     7
-##  2 " AL"     3
-##  3 " AR"     2
-##  4 " AZ"    11
-##  5 " CA"    39
-##  6 " CO"    47
-##  7 " CT"     8
-##  8 " DC"     1
-##  9 " DE"     2
-## 10 " FL"    15
+##  1 " DC"     1
+##  2 " ND"     1
+##  3 " SD"     1
+##  4 " WV"     1
+##  5 " AR"     2
+##  6 " DE"     2
+##  7 " MS"     2
+##  8 " NV"     2
+##  9 " AL"     3
+## 10 " KS"     3
 ## # ... with 41 more rows
 ```
+
+Here we can see that DC, North Dakota, South Dakota, and West Virginia only have one brewery.
 
 ##Question 2
 Next we merged the Beer dataset you presented to us with the breweries dataset. This will help us in our analysis moving forward.
@@ -188,12 +202,10 @@ We then computed the median alcohol content and IBU for each state, this should 
 
 
 ```r
-merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.rm=TRUE),
+summarydf = merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.rm=TRUE),
                                          MedianIBU = median(IBU, na.rm=TRUE))
-```
 
-```
-## Warning: package 'bindrcpp' was built under R version 3.4.4
+summarydf
 ```
 
 ```
@@ -212,6 +224,53 @@ merged %>% group_by(State) %>% summarise(MedianAlcoholContent = median(ABV, na.r
 ## 10 " FL"               0.057       55  
 ## # ... with 41 more rows
 ```
+
+```r
+library(reshape2)
+summarydfLong = melt(summarydf, id.vars='State')
+ggplot(summarydfLong, aes(x=State, y=value, fill=variable)) + 
+  geom_bar(stat='identity', position = 'dodge') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4), legend.text=element_text(size=7)) +
+  labs(title='Median Alcohol Content and Median IBU by State', x = 'State', y='Statistic') +
+  scale_fill_discrete(name = 'Statistic', breaks= c('MedianAlcoholContent', 'MedianIBU'),
+                      labels=c('Median Alcohol Content', 'Median IBU'))
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_bar).
+```
+
+![](Capstone1_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
+Because the units are very different, we decided it would be better to do two separate bar plots.
+
+
+```r
+library(ggplot2)
+ggplot(summarydf, aes(x=reorder(State, -MedianAlcoholContent), y=MedianAlcoholContent)) + 
+  geom_bar(stat='identity', fill='blue') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4),
+        plot.title = element_text(hjust = 0.5)) +
+  labs(title='Median Alcohol Content by State', x='State', y='Median')
+```
+
+![](Capstone1_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+```r
+ggplot(summarydf, aes(x=reorder(State, -MedianIBU), y=MedianIBU)) + 
+  geom_bar(stat='identity', fill='blue') +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4),
+        plot.title = element_text(hjust = 0.5)) +
+  labs(title='Median IBU by State', x='State', y='Median')
+```
+
+```
+## Warning: Removed 1 rows containing missing values (position_stack).
+```
+
+![](Capstone1_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
+
+Here we can see the DC has the largest median alcohol content and Utah has the smallest median alcohol content. Maine has the largest median IBU and Wisconsin has the lowest median IBU. For some reason we do not have information on the IBU of South Dakota.
 
 ##Question 5
 As you can see, Oregon has the most bitter beer and Colorado has the strongest beer. West Coast beers tend to be more bitter than East Coast beers, which is an idea to keep in mind moving forward.
@@ -279,19 +338,11 @@ Finally we present you with a scatter plot between bitterness and alcoholic cont
 
 
 ```r
-library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.4.4
-```
-
-```r
 ggplot(merged, aes(x=ABV, y=IBU)) + geom_point(colour = "blue", size = 0.8, na.rm = TRUE) + labs(title='Alcohol Content vs Bitterness') +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![](Capstone1_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](Capstone1_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 #Conclusion
 This is our analysis of your data. If you see something that strikes you as you continue your expansion we will look further into it.
