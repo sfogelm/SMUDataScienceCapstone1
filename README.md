@@ -21,4 +21,4 @@
 * City:  City where the brewery is located
 * State:  U.S. State each brewery is located
 ### **[Capstone1.Rmd](Capstone1.Rmd)**  
-* Capsotne1.Rmd provides all the answer to the case study questions. 
+* Capsotne1.Rmd provides all the answer to the case study questions. Click here **[Capstone1.md](Capstone1.md)** if you want ot read it online. 
