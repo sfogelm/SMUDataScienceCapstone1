@@ -1,7 +1,21 @@
-This is the first Capstone Project for Group 0.
-
-Description of each file
-
-Capstone1.Rmd: Capstone1 R markdown file.
-Capstone1.R: This file contian all the code in R for the Case Study.
-Capstone1.html: Case study in html format. 
+# Capstone Project: US Craft Beer and Breweries Study
+## **Introduction**
+### Purpose:The purpose of this repository is to store all the files for Case Study 1 for Group 0
+### Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
+### Date: Feb 2019
+## **Files Description**
+### **Beers.csv**
+#### Variables:
+* Name: Beer Name
+* Beer_ID:  Unique identifier for each beer
+* ABV:  Alcohol by volume of the beer
+* IBU:  International Bitterness Unit of the beer
+* Brewery_id:  ID number for each brewery
+* Style: Style of Beer
+* Ounces:  Fluid ounces of the beer
+### **Breweries.csv**  
+### Variables:
+* Brew_ID:  Unique identifier for each brewery
+* Name:  Brewery Name
+* City:  City where the brewery is located
+* State:  U.S. State each brewery is located
