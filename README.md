@@ -15,7 +15,7 @@
 * Style: Style of Beer
 * Ounces:  Fluid ounces of the beer
 ### **[Breweries.csv](Breweries.csv)**  
-### Variables:
+#### Variables:
 * Brew_ID:  Unique identifier for each brewery
 * Name:  Brewery Name
 * City:  City where the brewery is located
