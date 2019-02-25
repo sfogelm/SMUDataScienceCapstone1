@@ -4,7 +4,7 @@
 #### Team Name: Group 0
 #### Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
 #### Date: Feb 2019
-## **Files Description**
+## **File Description**
 ### **[Beers.csv](Beers.csv)**
 #### Variables:
 * Name: Beer Name
