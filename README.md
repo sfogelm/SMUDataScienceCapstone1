@@ -1,6 +1,7 @@
 # Capstone Project: US Craft Beer and Breweries Study
 ## **Introduction**
-#### Purpose:The purpose of this repository is to store all the files for Case Study 1 for Group 0
+#### Purpose: The purpose of this repository is to store all the files for Case Study 1 for Group 0
+#### Team Name: Group 0
 #### Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
 #### Date: Feb 2019
 ## **Files Description**
@@ -20,4 +21,4 @@
 * City:  City where the brewery is located
 * State:  U.S. State each brewery is located
 ### **[Capstone1.Rmd](Capstone1.Rmd)**  
-### Capsotne1.Rmd provides all the answer to the case study questions. 
+* Capsotne1.Rmd provides all the answer to the case study questions. 
