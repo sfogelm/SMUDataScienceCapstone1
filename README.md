@@ -4,7 +4,7 @@
 ### Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
 ### Date: Feb 2019
 ## **Files Description**
-### **Beers.csv**
+### **[Beers.csv](Beers.csv)**
 #### Variables:
 * Name: Beer Name
 * Beer_ID:  Unique identifier for each beer
@@ -13,7 +13,7 @@
 * Brewery_id:  ID number for each brewery
 * Style: Style of Beer
 * Ounces:  Fluid ounces of the beer
-### **Breweries.csv**  
+### **[Breweries.csv](Breweries.csv)**  
 ### Variables:
 * Brew_ID:  Unique identifier for each brewery
 * Name:  Brewery Name
