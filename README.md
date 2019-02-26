@@ -6,7 +6,7 @@
 ## **Introduction**
 #### As an Oregon based brewery, the company “Oregon’s Best Beer” would like to understand the distribution and characteristics of beers and breweries across the nation so as to be successful in other states
 ## **Solutions**
-#### Use existing data to find out which states have a small number of existing breweries. Also use the data to study how the alcohol  content and bitterness of beers differs by state so that the company can tailor its beers to those states’ tastes. The goal of the solution is to help the company to have better vision for the future business, to improve business execution and to predit future maintenance. 
+#### Use existing data to find out which states have a small number of existing breweries. Also use the data to study how the alcohol  content and bitterness of beers differs by state so that the company can tailor its beers to those states’ tastes. The goal of the solution is to help the company to have better vision for the future business, to improve business execution and to predict future maintenance. 
 ## **File Description**
 ### **[Beers.csv](Beers.csv)**
 #### Variables:
