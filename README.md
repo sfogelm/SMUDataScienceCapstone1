@@ -1,9 +1,12 @@
 # Capstone Project: US Craft Beer and Breweries Study
+* Purpose: The purpose of this repository is to store all the files for Case Study 1 for Group 0
+* Team Name: Group 0
+* Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
+* Date: Feb 2019
 ## **Introduction**
-#### Purpose: The purpose of this repository is to store all the files for Case Study 1 for Group 0
-#### Team Name: Group 0
-#### Authors: Spencer Fogelman, Ryan Goodwin, Queena Wang
-#### Date: Feb 2019
+####As an Oregon based brewery, the company “Oregon’s Best Beer” would like to understand the distribution and characteristics of beers and breweries across the nation so as to be successful in other states
+## **Solutions**
+####Use existing data to find out which states have a small number of existing breweries. Also use the data to study how the alcohol  content and bitterness of beers differs by state so that the company can tailor its beers to those states’ tastes. The goal of the solution is to help the company to have better vision for the future business, to improve business execution and to predit future maintenance. 
 ## **File Description**
 ### **[Beers.csv](Beers.csv)**
 #### Variables:
